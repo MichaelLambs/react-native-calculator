@@ -8,6 +8,7 @@ export default class CalculatorInputScreen extends React.Component {
   }
 
   render() {
+    console.log('here')
     return (
       <View>
         <Field title="Basic">
