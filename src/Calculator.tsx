@@ -327,9 +327,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
           // evaluating decimal separator
           if (value === decimalSeparator) {
-            if(!stack.value && !stack.text){
-              stack.text = "0"
-              stack.value = "0"
+            if (!stack.value && !stack.text) {
+              stack.text = '0'
+              stack.value = '0'
             }
             if (
               stack.value.indexOf(decimalSeparator) > -1 ||
@@ -446,7 +446,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                     return
                   }
 
-                  if (value === '0') {
+                  if (value === '0' && !trailing) {
                     return
                   }
 
@@ -467,6 +467,10 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                       let sep = ''
                       if (value[value.length - 1] === '.') {
                         sep = this.props.decimalSeparator as string
+                      } else {
+                        // skip trailing when no decimal separator found
+                        value += trailing
+                        trailing = ''
                       }
 
                       // get editing value
@@ -555,6 +559,10 @@ export class Calculator extends React.Component<CalculatorProps, State> {
   setSign(sign: string) {
     const stack = this.stacks[this.stacks.length - 1]
     if (stack.kind === StackKindEnum.SIGN) {
+      // only '-' sign allowed for first input
+      if (this.stacks.length <= 1 && sign !== '-') {
+        return
+      }
       stack.text = sign
       stack.value = sign
     } else {
@@ -565,7 +573,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       ) {
         return
       }
+
       if (sign === '-' && this.stacks.length === 1 && stack.value === '0') {
+        stack.kind = StackKindEnum.SIGN
         stack.text = sign
         stack.value = sign
       } else {
