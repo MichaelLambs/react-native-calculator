@@ -150,7 +150,6 @@ export class CalculatorInput extends React.Component<
       fieldDisabledTextStyle,
       prefix,
       suffix,
-      placeholder,
     } = this.props
     const { disabled, text } = this.state
 
@@ -162,7 +161,7 @@ export class CalculatorInput extends React.Component<
           disabled ? fieldDisabledTextStyle : {}
         ]}
       >
-        {(placeholder && !text) ? placeholder : prefix + text + suffix}
+        {prefix + text + suffix}
       </Text>
     )
 
