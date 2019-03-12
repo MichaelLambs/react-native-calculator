@@ -62,6 +62,11 @@ export interface CalculatorInputProps extends CalculatorCommonProps {
   suffix?: string
 
   /**
+   * Placeholder text.
+   */
+  placeholder?: string
+
+  /**
    * Disable editor.
    */
   disabled?: boolean
@@ -104,7 +109,8 @@ export class CalculatorInput extends React.Component<
   static defaultProps: Partial<CalculatorInputProps> = {
     ...DefaultCommonProps,
     suffix: '',
-    prefix: ''
+    prefix: '',
+    placeholder: ''
   }
 
   static getDerivedStateFromProps(
@@ -150,6 +156,7 @@ export class CalculatorInput extends React.Component<
       fieldDisabledTextStyle,
       prefix,
       suffix,
+      placeholder,
     } = this.props
     const { disabled, text } = this.state
 
@@ -161,7 +168,7 @@ export class CalculatorInput extends React.Component<
           disabled ? fieldDisabledTextStyle : {}
         ]}
       >
-        {prefix + text + suffix}
+        {(placeholder && !text) ? placeholder : prefix + text + suffix}
       </Text>
     )
 

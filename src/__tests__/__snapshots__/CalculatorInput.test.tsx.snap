@@ -99,6 +99,7 @@ exports[`renders calculator input correctly 1`] = `
             }
           }
           suffix=""
+          placeholder=""
           thousandSeparator=","
           value={0}
           width={750}
