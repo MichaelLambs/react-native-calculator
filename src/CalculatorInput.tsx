@@ -121,7 +121,7 @@ export class CalculatorInput extends React.Component<
 
   constructor(props: CalculatorInputProps) {
     super(props)
-
+    this.props = { props }
     this.calculatorModalToggle = this.calculatorModalToggle.bind(this)
     this.state = {
       ...(propsToState(props) as State),
