@@ -207,6 +207,7 @@ export class CalculatorInput extends React.Component<
 
     return (
       <Modal
+        onShow={this.setValue}
         transparent={true}
         visible={this.state.modalVisible}
         onRequestClose={this.calculatorModalToggle}
@@ -254,6 +255,10 @@ export class CalculatorInput extends React.Component<
   calculatorModalToggle() {
     const { modalVisible } = this.state
     this.setState({ modalVisible: !modalVisible })
+  }
+
+  setValue(){
+    this.setState({value: !!this.state.value ? this.state.value : 0})
   }
 }
 
