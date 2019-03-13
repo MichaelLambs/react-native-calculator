@@ -90,7 +90,6 @@ interface State {
 }
 
 function propsToState(props: CalculatorInputProps): Partial<State> {
-  console.log(props.value, "propsToState")
   const value = props.value
   return {
     value: props.value,
@@ -114,8 +113,6 @@ export class CalculatorInput extends React.Component<
     props: CalculatorInputProps,
     state: State
   ): Partial<State> | null {
-    console.log(props.value, "getDerivedStateFromProps - prop")
-    console.log(state.value, "getDerivedStateFromProps - state")
     if (props.value !== state.value) {
       return propsToState(props)
     }
@@ -130,6 +127,15 @@ export class CalculatorInput extends React.Component<
       ...(propsToState(props) as State),
       modalVisible: false
     }
+  }
+
+  static componentDidUpdate(prevProps: CalculatorInputProps) {
+    console.log(this.props.value, 'componentDidUpdate - props')
+    console.log(this.prevProps.value, 'componentDidUpdate - prevProps')
+    if (this.props.value !== prevProps.value) {
+      return propsToState(this.props)
+    }
+    return null
   }
 
   render() {
