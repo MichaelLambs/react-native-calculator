@@ -129,7 +129,7 @@ export class CalculatorInput extends React.Component<
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: CalculatorInputProps) {
     const { value } = this.props
     console.log(value, 'componentDidUpdate - props')
     console.log(prevProps.value, 'componentDidUpdate - prevProps')
