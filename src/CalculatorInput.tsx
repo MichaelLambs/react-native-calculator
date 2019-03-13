@@ -90,14 +90,10 @@ interface State {
 }
 
 function propsToState(props: CalculatorInputProps): Partial<State> {
-  const value = props.value || 0
+  const value = props.value
   return {
-    value: props.value || 0,
-    text: formatNumber(
-      value,
-      props.decimalSeparator as string,
-      props.thousandSeparator as string
-    ),
+    value: props.value,
+    text: !!value ? formatNumber(value, props.decimalSeparator as string, props.thousandSeparator as string) : '',
     disabled: props.disabled
   }
 }
@@ -158,7 +154,7 @@ export class CalculatorInput extends React.Component<
       suffix,
       placeholder,
     } = this.props
-    const { disabled, text, value } = this.state
+    const { disabled, text } = this.state
 
     const renderText = () => (
       <Text
@@ -168,7 +164,7 @@ export class CalculatorInput extends React.Component<
           disabled ? fieldDisabledTextStyle : {}
         ]}
       >
-        {(!!placeholder && !!value) ? placeholder : prefix + text + suffix}
+        {(!!placeholder && !text) ? placeholder : prefix + text + suffix}
       </Text>
     )
 
