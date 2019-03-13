@@ -121,7 +121,7 @@ export class CalculatorInput extends React.Component<
 
   constructor(props: CalculatorInputProps) {
     super(props)
-    this.props = { props }
+
     this.calculatorModalToggle = this.calculatorModalToggle.bind(this)
     this.state = {
       ...(propsToState(props) as State),
@@ -129,11 +129,12 @@ export class CalculatorInput extends React.Component<
     }
   }
 
-  static componentDidUpdate(prevProps: CalculatorInputProps) {
-    console.log(this.props.value, 'componentDidUpdate - props')
-    console.log(this.prevProps.value, 'componentDidUpdate - prevProps')
-    if (this.props.value !== prevProps.value) {
-      return propsToState(this.props)
+  componentDidUpdate(prevProps) {
+    const { value } = this.props
+    console.log(value, 'componentDidUpdate - props')
+    console.log(prevProps.value, 'componentDidUpdate - prevProps')
+    if (value !== prevProps.value) {
+      return propsToState(value)
     }
     return null
   }
