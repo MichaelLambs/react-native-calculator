@@ -84,7 +84,7 @@ export interface CalculatorInputProps extends CalculatorCommonProps {
 
 interface State {
   modalVisible: boolean
-  value: number
+  value?: number
   text: string
   disabled: boolean
 }
@@ -134,7 +134,7 @@ export class CalculatorInput extends React.Component<
     console.log(value, 'componentDidUpdate - props')
     console.log(prevProps.value, 'componentDidUpdate - prevProps')
     if (value !== prevProps.value) {
-      return propsToState(value)
+      return propsToState(this.props)
     }
     return null
   }
