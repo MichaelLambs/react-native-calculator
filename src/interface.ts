@@ -130,6 +130,6 @@ export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
   displayColor: '#000000',
   borderColor: '#52525B',
   fontSize: 18,
-  value: 0,
+  // value: 0,
   displayTextAlign: 'left'
 }
