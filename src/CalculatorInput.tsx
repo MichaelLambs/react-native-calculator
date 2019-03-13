@@ -90,7 +90,6 @@ interface State {
 }
 
 function propsToState(props: CalculatorInputProps): Partial<State> {
-  console.log(props, 'propsToState - props')
   const value = props.value
   return {
     value: props.value,
@@ -133,7 +132,6 @@ export class CalculatorInput extends React.Component<
   componentDidUpdate(prevProps: CalculatorInputProps) {
     const { value } = this.props
     if (value != prevProps.value) {
-      console.log(this.props, 'componentDidUpdate - prevProps')
       return propsToState(this.props)
     }
     return null
@@ -163,6 +161,7 @@ export class CalculatorInput extends React.Component<
       prefix,
       suffix,
       placeholder,
+      value
     } = this.props
     const { disabled, text } = this.state
 
@@ -174,7 +173,7 @@ export class CalculatorInput extends React.Component<
           disabled ? fieldDisabledTextStyle : {}
         ]}
       >
-        {(!!placeholder && !text) ? placeholder : prefix + text + suffix}
+        {(!!placeholder && !value) ? placeholder : prefix + text + suffix}
       </Text>
     )
 
