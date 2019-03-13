@@ -158,7 +158,7 @@ export class CalculatorInput extends React.Component<
       suffix,
       placeholder,
     } = this.props
-    const { disabled, text } = this.state
+    const { disabled, text, value } = this.state
 
     const renderText = () => (
       <Text
@@ -168,7 +168,7 @@ export class CalculatorInput extends React.Component<
           disabled ? fieldDisabledTextStyle : {}
         ]}
       >
-        {(!!placeholder && (!text || text === 0)) ? placeholder : prefix + text + suffix}
+        {(!!placeholder && !!value) ? placeholder : prefix + text + suffix}
       </Text>
     )
 
