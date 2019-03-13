@@ -93,7 +93,7 @@ function propsToState(props: CalculatorInputProps): Partial<State> {
   const value = props.value
   return {
     value: props.value,
-    text: !!value ? formatNumber(value, props.decimalSeparator as string, props.thousandSeparator as string) : '',
+    text: (!!value || value === 0) ? formatNumber(value, props.decimalSeparator as string, props.thousandSeparator as string) : '',
     disabled: props.disabled
   }
 }
