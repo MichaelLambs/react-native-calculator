@@ -130,9 +130,9 @@ export class CalculatorInput extends React.Component<
   }
 
   componentDidUpdate(prevProps: CalculatorInputProps) {
-    const { value } = this.props
+    const { value, decimalSeparator, thousandSeparator } = this.props
     if (value != prevProps.value) {
-      return propsToState(this.props)
+      this.setState({value : value, text: (!!value || value === 0) ? formatNumber(value, decimalSeparator as string, thousandSeparator as string) : '' })
     }
     return null
   }
@@ -161,7 +161,6 @@ export class CalculatorInput extends React.Component<
       prefix,
       suffix,
       placeholder,
-      value
     } = this.props
     const { disabled, text } = this.state
 
@@ -173,7 +172,7 @@ export class CalculatorInput extends React.Component<
           disabled ? fieldDisabledTextStyle : {}
         ]}
       >
-        {(!!placeholder && !value) ? placeholder : prefix + text + suffix}
+        {(!!placeholder && !text) ? placeholder : prefix + text + suffix}
       </Text>
     )
 
