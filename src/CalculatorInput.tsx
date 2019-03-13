@@ -133,7 +133,8 @@ export class CalculatorInput extends React.Component<
     const { value } = this.props
     console.log(value, 'componentDidUpdate - props')
     console.log(prevProps.value, 'componentDidUpdate - prevProps')
-    if (value !== prevProps.value) {
+    if (value != prevProps.value) {
+      console.log('here')
       return propsToState(this.props)
     }
     return null
